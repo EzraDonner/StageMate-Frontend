@@ -3,9 +3,7 @@ import LoginForm from "./components/Login";
 import Register from "./components/Register.jsx";
 
 // import { Register } from "register";
-import reactLogo from "./assets/react.svg";
 import Navigations from "./components/Navigations.jsx";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import TestGetBookQuery from "./components/Books.jsx";
 import { Provider } from "react-redux";
