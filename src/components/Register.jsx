@@ -14,7 +14,7 @@ const Register = () => {
   const [registerUser, { isLoading, isSuccess, error }] =
     useRegisterUserMutation();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event, formData) => {
     event.preventDefault();
     console.log(`formdata: ${JSON.stringify(formData)}`);
     try {
@@ -25,7 +25,7 @@ const Register = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={(e) => handleSubmit(e, formData)}>
       <input
         type="text"
         placeholder="First Name"

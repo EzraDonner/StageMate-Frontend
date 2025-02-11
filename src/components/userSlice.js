@@ -13,14 +13,14 @@ const userApi = api.injectEndpoints({
        *  string token - used for future authentication
        */
       query: ({ firstname, lastname, email, password }) => ({
-        url: "api/users/register",
+        url: "/users/register",
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          firstname,
-          lastname,
+          firstName: firstname,
+          lastName: lastname,
           email,
           password,
         }),
