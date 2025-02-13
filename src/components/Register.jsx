@@ -9,12 +9,13 @@ const Register = () => {
     lastname: "",
     email: "",
     password: "",
+    venueName: "",
   });
 
   const [registerUser, { isLoading, isSuccess, error }] =
     useRegisterUserMutation();
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event, formData) => {
     event.preventDefault();
     console.log(`formdata: ${JSON.stringify(formData)}`);
     try {
@@ -25,7 +26,7 @@ const Register = () => {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={(e) => handleSubmit(e, formData)}>
       <input
         type="text"
         placeholder="First Name"
@@ -54,6 +55,15 @@ const Register = () => {
         placeholder="Password"
         value={formData.password}
         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+        required
+      />
+      <input
+        type="text"
+        placeholder="venue name"
+        value={formData.venueName}
+        onChange={(e) =>
+          setFormData({ ...formData, venueName: e.target.value })
+        }
         required
       />
       <button type="submit" disabled={isLoading}>
