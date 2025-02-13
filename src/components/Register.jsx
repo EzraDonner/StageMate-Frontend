@@ -9,6 +9,7 @@ const Register = () => {
     lastname: "",
     email: "",
     password: "",
+    venueName: "",
   });
 
   const [registerUser, { isLoading, isSuccess, error }] =
@@ -54,6 +55,15 @@ const Register = () => {
         placeholder="Password"
         value={formData.password}
         onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+        required
+      />
+      <input
+        type="text"
+        placeholder="venue name"
+        value={formData.venueName}
+        onChange={(e) =>
+          setFormData({ ...formData, venueName: e.target.value })
+        }
         required
       />
       <button type="submit" disabled={isLoading}>

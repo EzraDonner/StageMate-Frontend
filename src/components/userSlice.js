@@ -12,7 +12,7 @@ const userApi = api.injectEndpoints({
        *  string message,
        *  string token - used for future authentication
        */
-      query: ({ firstname, lastname, email, password }) => ({
+      query: ({ firstname, lastname, email, password, venueName }) => ({
         url: "/users/register",
         method: "POST",
         headers: {
@@ -23,6 +23,7 @@ const userApi = api.injectEndpoints({
           lastName: lastname,
           email,
           password,
+          venueName,
         }),
       }),
     }),
@@ -37,7 +38,7 @@ const userApi = api.injectEndpoints({
        *  string token - used for future authentication
        */
       query: ({ email, password }) => ({
-        url: "api/users/login",
+        url: "/users/login",
         method: "POST",
         headers: {
           "Content-Type": "application/json",
