@@ -2,29 +2,36 @@
 //>books >Register >login
 //do basic page stuff to test slices/stores/api
 
-import { useGetBooksQuery } from "./booksSlice";
+import { useGetMusiciansQuery } from "./booksSlice";
 import { useState } from "react";
 
 const TestGetBookQuery = () => {
-  const [title, setTitle] = useState("");
-
-  const { data: books, isLoading, error } = useGetBooksQuery();
-  console.log(books?.books);
-  console.log(books?.books?.at(0));
-  //const response = JSON.stringify(books?.books);
+  const { data: musicians, isLoading, error } = useGetMusiciansQuery();
+  const [searchTerm, setSearchTerm] = useState("");
+  if (isLoading) {
+    return <p>is loading...</p>;
+  }
+  if (error) {
+    return <p>error</p>;
+  }
+  console.log(musicians);
+  const filteredMusicians = musicians.filter((musician) =>
+    musician.actName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   return (
     <div>
-      {books?.books?.map((val, index) => {
-        return (
-          <p key={val.id}>
-            {console.log(`${val.title} - ${val.author}`)}
-            <img src = {val.coverimage}/>
-            {val.title} by {val.author}
-            <div>availability: {val.available ?"available":"unavailable"}</div>
-            {val.description}
-          </p>
-        );
-      })}
+      <input
+        type="text"
+        placeholder="search musicians"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      ></input>
+      {filteredMusicians &&
+        filteredMusicians.map((musician) => (
+          <div key={musician.id}>
+            <h1>{musician.actName}</h1>
+          </div>
+        ))}
     </div>
   );
 };
